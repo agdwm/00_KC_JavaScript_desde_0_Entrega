@@ -23,5 +23,25 @@ function trackKeys(keyCodes) {
 	return pressedKeys;
 }
 
+function runAnimation (frameFunction) {
+	let lastTime = null;
+
+	function frame (time) {
+		let stop = false;
+		
+		if (lastTime !== null) {
+			let timeStep = Math.min(time - lastTime, 100);
+			stop = frameFunction(timeStep) === false;
+		}
+		lastTime = time;
+
+		if (!stop) {
+			// requestAnimationFrame is a method of the browser 
+			requestAnimationFrame(frame);
+		}
+		requestAnimationFrame(frame)
+	}
+}
+
 let level = new Level(GAME_LEVELS);
 let display = new DOMDisplay(document.body, level);
