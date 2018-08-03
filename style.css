@@ -22,3 +22,11 @@
 .wall {
 	background: rgb(255, 255, 255);
 }
+
+.actor {
+	position: absolute;
+}
+
+.coin {
+	background: rgb(240, 230, 90);
+}
