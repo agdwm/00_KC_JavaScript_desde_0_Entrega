@@ -39,8 +39,6 @@ function Level (plan) {
 		}
 		this.grid.push(gridLine);
 	}
-
-	console.log(this.actors);
 }
 
 Level.prototype.isFinished = function(){
