@@ -53,8 +53,7 @@ function runGame (levels, Display) {
         try {
             levelObject = new Level(levels[levelNumber]);
         } catch (error) {
-			//return alert(error.message);
-			console.log(error);
+			return alert(error.message);
         }
 
         runLevel(levelObject, Display, status => {
