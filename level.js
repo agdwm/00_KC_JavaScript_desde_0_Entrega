@@ -1,6 +1,7 @@
 const ACTORS = {
-	// the character 'o' in the 'plan' is one 'Coin'
-	'o': Coin
+	// characters equivalen to the following constructor functions
+	'o': Coin,
+	'@': Player
 };
 
 function Level (plan) {
