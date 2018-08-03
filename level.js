@@ -7,6 +7,8 @@ const ACTORS = {
 	'v': Lava
 };
 
+const MAX_STEP = 0.05;
+
 function Level (plan) {
 	this.width = plan[0].length;
 	this.height = plan.length;
@@ -41,6 +43,16 @@ function Level (plan) {
 	}
 }
 
-Level.prototype.isFinished = function(){
+Level.prototype.isFinished = function() {
 	return (this.status !== null && this.finishDelay < 0);
+}
+
+Level.prototype.animate = function (step, keys) {
+	if (this.status !== null) this.finishDelay -= step;
+	
+	while (step > 0) {
+		let thisStep = Math.min(step, MAX_STEP);
+		this.actors.forEach(actor => actor.act(thisStep, this, keys));
+		step -= this.step;
+	}
 }
