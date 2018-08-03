@@ -1,7 +1,10 @@
 const ACTORS = {
 	// characters equivalen to the following constructor functions
 	'o': Coin,
-	'@': Player
+	'@': Player,
+	'=': Lava,
+	'|': Lava,
+	'v': Lava
 };
 
 function Level (plan) {

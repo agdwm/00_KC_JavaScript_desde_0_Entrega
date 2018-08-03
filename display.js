@@ -11,7 +11,9 @@ function DOMDisplay (parent, level) {
     this.level = level;
 
 	this.wrap.appendChild(this.drawBackground());
-	this.wrap.appendChild(this.drawActors());
+	this.actorsLayer = null;
+
+	this.drawFrame();
 }
 
 DOMDisplay.prototype.drawBackground = function() {
@@ -40,4 +42,16 @@ DOMDisplay.prototype.drawActors = function () {
 	});
 
 	return actorsWrap;
+}
+
+DOMDisplay.prototype.drawFrame = function () {
+	if (this.actorsLayer) {
+		this.wrap.removeChild(this.actorsLayer);
+	}
+	this.actorsLayer = this.wrap.appendChild(this.drawActors());
+	this.wrap.className = 'game ' + (this.level.status || '');
+}
+
+DOMDisplay.prototype.clear = function() {
+	this.wrap.parentNode.removeChild(this.wrap);
 }
