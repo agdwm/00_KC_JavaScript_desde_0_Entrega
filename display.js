@@ -3,29 +3,30 @@ const SCALE = 20;
 function createElement (type, className) {
     let element = document.createElement(type);
     if (className) element.className = className;
-    return element;
+    return element
 }
 
 function DOMDisplay (parent, level) {
     this.wrap = parent.appendChild(createElement('div', 'game'));
     this.level = level;
 
-	this.wrap.appendChild(this.drawBackground());
-	this.actorsLayer = null;
+    this.wrap.appendChild(this.drawBackground());
+    this.actorsLayer = null; 
 }
 
-DOMDisplay.prototype.drawBackground = function() {
+DOMDisplay.prototype.drawBackground = function () {
 	let table = createElement('table', 'background');
-	table.style.width = this.level.width * SCALE + 'px';
+	console.log(this.level);
+    table.style.width = this.level.width * SCALE + 'px';
 
-	this.level.grid.forEach(row => {
-		let rowElement = createElement('tr');
-		rowElement.style.height = SCALE + 'px';
-		table.appendChild(rowElement);
-		row.forEach(type => rowElement.appendChild(createElement('td', type)));
-	}); 
+    this.level.grid.forEach(row => {
+        let rowElement = createElement('tr');
+        rowElement.style.height = SCALE + 'px';
+        table.appendChild(rowElement);
+        row.forEach(type => rowElement.appendChild(createElement('td', type)));
+    });
 
-	return table;
+    return table;
 }
 
 DOMDisplay.prototype.drawActors = function () {
@@ -43,9 +44,9 @@ DOMDisplay.prototype.drawActors = function () {
 }
 
 DOMDisplay.prototype.drawFrame = function () {
-	if (this.actorsLayer) this.wrap.removeChild(this.actorsLayer);
-	this.actorsLayer = this.wrap.appendChild(this.drawActors());
-	this.wrap.className = 'game ' + (this.level.status || '');
+    if (this.actorsLayer) this.wrap.removeChild(this.actorsLayer);
+    this.actorsLayer = this.wrap.appendChild(this.drawActors());
+    this.wrap.className = 'game ' + (this.level.status || '');
 }
 
 DOMDisplay.prototype.clear = function() {

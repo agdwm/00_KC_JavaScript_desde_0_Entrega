@@ -1,3 +1,6 @@
+const wobbleSpeed = 10;
+const wobbleDistance = 0.1;
+
 function Coin (initialPosition) {
 	// initialize two variables at the same time
 	this.basePosition = this.position = initialPosition.plus(new Vector(0.2, 0.1));
@@ -8,5 +11,7 @@ function Coin (initialPosition) {
 Coin.prototype.type = 'coin';
 
 Coin.prototype.act = function (step) {
-	
+	this.wobble += step * wobbleSpeed;
+	let wobblePosition = Math.sin(this.wobble) * wobbleDistance;
+	this.position = this.basePosition.plus(new Vector(0, wobblePosition));
 }
